@@ -27,5 +27,4 @@ vec = sc.textFile(".\\test\\x_2K.txt").map(lambda x: float(x.replace("array([",'
 prod = mat.map(lambda x: ( int(x[0]) ,dotprod(x[1],vec)) )	#dot prod of each row from matrix with vector
 
 #print mat.collect()
-#print vec
 prod.saveAsTextFile(".\\Test\\prod")
