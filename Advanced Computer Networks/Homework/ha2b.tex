@@ -1,0 +1,57 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{epsfig,xspace,url}
+\usepackage{authblk}
+
+
+\title{CS 6480: Class discussion summary\\
+HA 2.b\\}
+\author{Damodar Sahasrabudhe}
+\affil{School of Computing, University of Utah}
+
+\begin{document}
+
+\maketitle
+\section*{Discussion summary}
+
+\begin{itemize}
+
+\item {\it Summary:} 
+\begin{itemize}
+\item Nothing but controller of OpenFlow
+\item OS analogy is limited. OS is generalized for all kinds of programs. NOX targets apps specific for network management.
+\item Though better controllers are available now, NOX was the first such concept suggested.
+
+\end{itemize} 
+
+\item {\it Strengths:} 
+\begin{itemize}
+\item This is the first paper which suggested sophisticated controller. So in spite of some loopholes, it is first such idea of the kind. 
+\end{itemize}
+
+\item {\it Weakness:} 
+\begin{itemize}
+\item No performance measures given. As system is running, they could have given performance measures.
+\item level of abstraction may not be sufficient.
+\end{itemize}
+
+
+\item {\it Connection with other work:} 
+A brief mention of Ethan\cite{Ethane}.
+
+\item {\it Future work:} 
+\begin{itemize}
+\item When implemented at large scale such as internet, Controller can not view each and every undelivered packet. System should be intelligent enough to handle such scenarios
+
+\end{itemize}
+
+\end{itemize}
+
+\begin{thebibliography}{1}
+\bibitem{Ethane} Martin Casado, Michael J. Freedman, Justin Pettit,Jianying Luo, Nick McKeown, Scott Shenker. "Ethane: Taking Control of the Enterprise"
+
+\end{thebibliography}
+
+\end{document}
+
+
+

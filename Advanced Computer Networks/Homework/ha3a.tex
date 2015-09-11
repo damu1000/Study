@@ -1,0 +1,112 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{epsfig,xspace,url}
+\usepackage{authblk}
+
+
+\title{Paper Summary\\
+HA 2.a\\}
+\author{Damodar Sahasrabudhe}
+\affil{School of Computing, University of Utah}
+
+\begin{document}
+
+\maketitle
+\section{Title of paper: P4: Programming Protocol-Independent Packet Processors}
+Paper discussed in this summary is "P4: Programming Protocol-Independent Packet Processors"\cite{paper}.
+
+\subsection{First pass information}
+\label{sec:first}
+
+\begin{enumerate}
+
+\item {\it Category:} Paper suggests a new Programming language and presents examples.
+
+\item {\it Context:} Paper is in area of SDN. Refers to multiple other papers such as - Kangaroo \cite{Kangaroo}, Portland\cite{Kangaroo}, NOSIX\cite{Kangaroo} etc.
+
+\item {\it Assumptions:}  
+\begin{itemize}
+\item Actions will be built with protocol independent elements.
+\item For sake of explanation, paper assumes there will be no packet processing during configuration.
+\item Underlying switch has capability to parse the header.
+\item Compilers targeting every type of underlying hardware will be easily available.
+
+\end{itemize}
+
+\item {\it Contributions:} Paper suggests building of an programming language to hide underlying hardware and protocols and provide simple and uniform interface to programmers, where controllers could be easily programmed.
+
+%\item {\it Clarity:} Paper is written very well, code snapshots help to understand concepts quickly.
+
+\end{enumerate}
+
+\subsection{Second pass information}
+\label{sec:second}
+
+
+
+{\it Summary:} 
+
+\begin{itemize}
+\item Introduction: Over the period of time open flow headers are becoming more and more complex. It shows need to have flexible headers and need to add / remove header elements dynamically. This in turn needs more abstract programming interface which will be platform and protocol independent.
+
+\item Abstract Forwarding Model: Improving further upon concepts of OpenFlow, switch could be have inbuilt parser tables (to parse header fields), parallel match-action tables (against serialized operations of OpenFlow tables) and action set.
+
+\item Programming Language and Examples: Parallel operations of flow tables requires compiler should prepare Table Dependency Graph (TDG) and then map TDG to specific switch. P4 introduces new constructs for - header, parser, table, action and control. Each of them provides consistent way of configuring controller and/or switches irrespective of protocol or underlying hardware.
+
+\end{itemize}
+
+\subsection{Third pass information}
+\label{sec:third}
+
+\begin{itemize}
+
+\item {\it Strengths:} 
+\begin{itemize}
+\item The idea, if implemented effectively, will make life of administrators easier.
+\item It will be easy to use P4 and write and application to gather statistics and provide Bird's eye view.
+\item Snapshots of code makes it easier to understand the paper.
+\item Parallel processing of packets will give better performance than OpenFlow switch.
+
+\end{itemize}
+
+
+\item {\it Weaknesses:} 
+\begin{itemize}
+\item Packet tampering may cross boundaries of network protocol layers.
+\item Seems over complex to be implemented and tested.
+
+\end{itemize}
+
+
+\item {\it Questions:} 
+Is it practically possible to have compilers targeting so many protocols and underlying hardware?
+
+\item {\it Interesting citations:} Scalable, high performance ethernet forwarding with CuckooSwitch
+
+\item {\it Possible improvements:} 
+\begin{itemize}
+\item No need of multiple match action tables. Single entry can use AND / OR conditions to check complex conditions.
+\end{itemize}
+
+\item {\it Future work:} 
+There should be some governing body to control custom protocols \ headers, otherwise there will be explosion of such private changes.
+\end{itemize}
+
+{
+%\footnotesize 
+\small 
+\bibliographystyle{acm}
+\begin{thebibliography}{1}
+\bibitem{paper} P4: Programming Protocol-Independent Packet Processors
+
+\bibitem{Kangaroo} C. Kozanitis, J. Huber, S. Singh, and G. Varghese, “Leaping multiple headers in a single bound: Wire-speed parsing using the Kangaroo system,” in IEEE INFOCOM, pp. 830–838, 2010
+\bibitem{Portland}  R. Niranjan Mysore, A. Pamboris, N. Farrington, N. Huang, P. Miri, S. Radhakrishnan, V. Subramanya, and A. Vahdat, “PortLand: A scalable fault-tolerant layer 2 data center network fabric,” in ACM SIGCOMM, pp. 39–50, Aug. 2009.
+\bibitem{NOSIX}  M. Raju, A. Wundsam, and M. Yu, “NOSIX: A lightweight portability layer for the SDN OS,” ACM SIGCOMM Computer Communications Review, 2014
+
+\end{thebibliography}
+\end{document}
+}
+
+
+
+
+

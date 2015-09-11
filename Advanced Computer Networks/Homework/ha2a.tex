@@ -1,0 +1,118 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{epsfig,xspace,url}
+\usepackage{authblk}
+
+
+\title{Paper Summary\\
+HA 2.a\\}
+\author{Damodar Sahasrabudhe}
+\affil{School of Computing, University of Utah}
+
+\begin{document}
+
+\maketitle
+\section{Title of paper: NOX: Towards an Operating System for Networks}
+Paper discussed in this summary is "NOX: Towards an Operating System for Networks"\cite{NOX}.
+
+\subsection{First pass information}
+\label{sec:first}
+
+\begin{enumerate}
+
+\item {\it Category:} Paper proposes a new research idea about "Network Operating System" - a platform for network developers. Paper also provides evidence gathered from experiments and example codes.
+
+\item {\it Context:} Problem addressed in paper is ease of network management. 
+\begin{itemize}
+\item It builds more on OpenFlow\cite{OpenFlow} and proposes more sophisticated model - a Controller(s) which not only control(s) the switch but the whole enterprise network.
+\end{itemize}
+
+\item {\it Assumptions:}  
+\begin{itemize}
+\item Network will not be attacked and hence security features are not added as of now, but kept for future work.
+\item Application developers using NOX will be aware of will build fault free applications.
+\end{itemize}
+
+\item {\it Contributions:} Ease of network management and network application development / research.
+
+%\item {\it Clarity:} Paper is written very well, most of the contains could be understood in first pass itself.
+
+\end{enumerate}
+
+\subsection{Second pass information}
+\label{sec:second}
+
+
+
+{\it Summary:} 
+
+\begin{itemize}
+
+\item Introduction: Paper introduces how Operating systems encapsulate hardware / architecture details from application programmers making it easier to code, debug and port applications. OS takes care of IPC, memory management, program execution etc. which makes it easier for user to manage the machine. Paper suggests necessity of similar common platform for networks as well.
+
+\item Overview: 
+\begin{itemize}
+\item Components - NOX consists of OpenFlow switches, a database housing network view, a server which runs NOX controller. NOX controller hides all the low level hardware implementation and provides abstract interface for applications used to manage network.
+\item Operation - Operation is similar to OpenFlow - Controller reads first packet from new flow and forwards to appropriate destination. Rest of the packets follow the same direction.
+\item Scalability - Packet forwarding is handled by switches at line speed. Flow initiations are handled by Controller - which can handle 100,000 flows per second is seems sufficient for enterprise wide network. The global database  of network view can also be maintained as "changes in network" are not as frequent as packets. As a result NOX seems scalable enough to handle dynamic changes in network or the routing rules.
+\end{itemize}
+
+\item Programming Interface - This section lists typical "Events" (similar to interrupts used by microprocessor), Network view (which maintains mapping between host names and real address) and higher level services offered to developers.
+
+\item Examples - The best example LOC required to build Ethane - with and without NOX. Using higher level abstraction provided by NOX, LOC for Ethane\cite{Ethane} reduced by around 80%.
+
+\end{itemize}
+
+\subsection{Third pass information}
+\label{sec:third}
+
+\begin{itemize}
+
+\item {\it Strengths:} 
+\begin{itemize}
+\item Clarity of the paper
+\item Idea to provide OS is good. It possibly can do same thing in networks what Android did in smart phones.
+\item Evidence provided using working examples.
+\end{itemize}
+
+
+\item {\it Weaknesses:} 
+\begin{itemize}
+\item Against principle of Internet i.e. distributed control.
+\item Lack of security at the heart of the network.
+\end{itemize}
+
+
+\item {\it Questions:} Need more details about implementations and APIs if one intends to use NOX.
+
+
+\item {\it Interesting citations:} Z. Cai, F. Dinu, J. Zheng, A. L. Cox, and T. S. E. Ng. Maestro: A Clean-Slate System for Orchestrating
+
+\item {\it Possible improvements:} 
+\begin{itemize}
+\item Security measures are must as NUX, when implemented is going to be heart of the network.
+\item Fault tolerance is needed.
+\end{itemize}
+
+\item {\it Future work:} 
+Development of new equipments or protocols should be accompanied by "device drivers" to interface them 
+
+
+\end{itemize}
+
+{
+  %\footnotesize 
+  \small 
+  \bibliographystyle{acm}
+  \begin{thebibliography}{1}
+\bibitem{NOX} NOX: Towards an Operating System for Networks
+\bibitem{OpenFlow} N. McKeown, T. Anderson, H. Balakrishnan,G. Parulkar, L. Peterson, J. Rexford, S. Shenker, and J. Turner. Openflow: enabling innovation in campus networks. SIGCOMM Comput. Commun. Rev.,
+38(2):69–74, 2008.
+\bibitem{Ethane} Martin Casado, Michael J. Freedman, Justin Pettit,Jianying Luo, Nick McKeown, Scott Shenker. "Ethane: Taking Control of the Enterprise"
+\end{thebibliography}
+\end{document}
+}
+
+
+
+
+

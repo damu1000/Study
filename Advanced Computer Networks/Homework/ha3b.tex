@@ -1,0 +1,60 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{epsfig,xspace,url}
+\usepackage{authblk}
+
+
+\title{CS 6480: Class discussion summary\\
+HA 3.b\\}
+\author{Damodar Sahasrabudhe}
+\affil{School of Computing, University of Utah}
+
+\begin{document}
+
+\maketitle
+\section*{Discussion summary}
+
+\begin{itemize}
+
+\item {\it Summary:} 
+Class discussed the main concept of the paper, its implementations and about strengths and weakness. Here few points for which I got more clarity:
+\begin{itemize}
+\item Programmers can more easily define own network protocols.
+\item key challenge in implementation is  to achieve balance between expressiveness and ease of implementation.
+\item Paper suggested 3 generalizations over openflow - reconfigurability, protocol independence and platform independence.
+\item Performance will be a concern while operating at larger scale.
+\item Example of table dependency - a scenario where next rule is set on MAC address. This rule is dependent upon finding out of MAC using ARP and can not be run unless MAC is found.
+\item Example of L2 network deployment was more clarified after discussion - Top of the rack switch has  pre-populated destination ips/macs populated by control protocol header. Same  are populated in P4 header (say up1, up2 etc.) , P4/ openflow does not bother about how those get populated in Top of the rack switch.
+
+\end{itemize} 
+
+\item {\it Strengths:} 
+\begin{itemize}
+\item A good generalization of Openflow- configuring and maintaining switches will be easier.
+\item Tremendous flexibility offered to programmers in terms of defining protocols.
+\item Functions such as setfield are similar to C, making it easier to understand.
+\end{itemize}
+
+\item {\it Weakness:} 
+\begin{itemize}
+\item Some references in paper are left unexplained - Bridge Id in Dependency Graph, Ethertype in header.
+
+\end{itemize}
+
+
+\item {\it Connection with other work:} 
+A brief mention of Portland\cite{Portland}, Click\cite{Click}.
+
+\item {\it Future work:} was not discussed due to time constrain.
+
+\end{itemize}
+
+\begin{thebibliography}{1}
+\bibitem{Portland} R. Niranjan Mysore, A. Pamboris, N. Farrington, N. Huang, P. Miri, S. Radhakrishnan, V. Subramanya, and A. Vahdat, “PortLand: A scalable fault-tolerant layer 2 data center network fabric,” in ACM SIGCOMM, pp. 39–50, Aug. 2009.
+\bibitem{Click} E. Kohler, R. Morris, B. Chen, J. Jannotti, and M. F. Kaashoek, “The Click modular router,” ACM Transactions on Computer Systems, vol. 18, pp. 263–297, Aug. 2000.
+
+\end{thebibliography}
+
+\end{document}
+
+
+

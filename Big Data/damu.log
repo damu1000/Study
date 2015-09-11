@@ -1,0 +1,10 @@
+reading files completed
+[(u'country', 5), (u'is', 4), (u'I', 3), (u'India', 3)]
+[u'country', u'is', u'I', u'India']
+[5, 4, 3, 3]
+SUCCESS: The process with PID 1948 (child process of PID 6076) has been terminated.
+SUCCESS: The process with PID 6076 (child process of PID 2664) has been terminated.
+SUCCESS: The process with PID 2664 (child process of PID 1204) has been terminated.
+SUCCESS: The process with PID 1204 (child process of PID 6760) has been terminated.
+SUCCESS: The process with PID 6760 (child process of PID 7124) has been terminated.
+SUCCESS: The process with PID 7124 (child process of PID 5316) has been terminated.

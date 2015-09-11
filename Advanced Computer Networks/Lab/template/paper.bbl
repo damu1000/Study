@@ -1,0 +1,10 @@
+\begin{thebibliography}{1}
+
+\bibitem{random.host.mutation}
+{\sc Jafarian, J.~H., Al-Shaer, E., and Duan, Q.}
+\newblock Openflow random host mutation: transparent moving target defense
+  using software defined networking.
+\newblock In {\em Proceedings of the first workshop on Hot topics in software
+  defined networks\/} (New York, NY, USA, 2012), HotSDN '12, ACM, pp.~127--132.
+
+\end{thebibliography}

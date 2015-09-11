@@ -1,0 +1,115 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{epsfig,xspace,url}
+\usepackage{authblk}
+
+
+\title{Paper Summary\\
+HA 1.a\\}
+\author{Damodar Sahasrabudhe}
+\affil{School of Computing, University of Utah}
+
+\begin{document}
+
+\maketitle
+\section{Title of paper: OpenFlow: Enabling Innovation in Campus Networks}
+Paper discussed in this summary is "OpenFlow: Enabling Innovation in Campus Networks"\cite{openflow}.
+
+\subsection{First pass information}
+\label{sec:first}
+
+\begin{enumerate}
+
+\item {\it Category:} Paper describes a new research idea about using software for switching network packets. It enumerates pros and cons along with some examples.
+
+\item {\it Context:} Paper is related with alternate model of packet switching at Link Layer. Paper refers to other papers to -
+\begin{itemize}
+\item Give example of Programmable network - GENI 
+\item Show existing applications having similar functionality and to point of limitations.
+\item Another paper to provide Implementation
+\end{itemize}
+
+\item {\it Assumptions:}  
+\begin{itemize}
+\item Network administrators are not ready to make changes existing configuration of production environment, because they fear of adverse effect on production. This hinders further research - Partially valid assumption. However few switches could be solely dedicated for research. This will keep production system safe.
+\item Manufacturers of switches and routers are reluctant to make changes in well set hardware/software - I dont know whether this is true, but if so, it is blocking development of science and in turn those organizations as well.
+\end{itemize}
+\item {\it Contributions:} OpenFlow suggests idea of Programmable switches / routers that will give flexibility to researchers to experiment new ideas and will allow network administrators to keep "live" network safe from experimenting.
+
+%\item {\it Clarity:} Is the paper well written? - Yes, but some evidence of how OpenFlow enhances network capabilities would have helped.
+
+\end{enumerate}
+
+\subsection{Second pass information}
+\label{sec:second}
+
+
+
+{\it Summary:} 
+
+\begin{itemize}
+
+\item Paper begins with 4 problems that hinder networking research - 
+\begin{enumerate}
+\item Manufacturers of Routers and switches reluctant to "open" their requirements to programmers.
+\item Changes made in network setup for research may impact all the users in the network.
+\item Programmable networks such as GENI are time consuming as well as expensive.
+\item Some existing tools (such as XORP and Click) can partially solve these problems but can not meet expected performance. 
+\end{enumerate}
+Paper suggests novel approach - OpenFlow - to address all these concerns.
+
+\item Implementation of Open Switch - Paper describes 2 types configurations of OpenFlow - using dedicate for OpenFlow switches and by using OpenFlow enabled switches. Both types will have a Controller, Secure channel to update flow tables and flow table itself. In addition to these 3 components, OpenFlow enabled switches will have usual flow tables to forward packets. Paper further explains how controller can set rules to dynamically switch packets, how system evolves over the period of time and how traditional and experimental traffic can be separated. System provides flexibility to both - researchers and network administrators.
+
+\item Paper provides a hypothetical example to explain the implementation (Amy's study)
+\item Paper ends with some possible real life benefits of using OpenFlow
+
+\end{itemize}
+
+\subsection{Third pass information}
+\label{sec:third}
+
+\begin{itemize}
+
+\item {\it Strengths:} 
+\begin{itemize}
+\item Easy to deploy. Will not consume significant time as in case of Ethane.\cite{Ethane}
+\item Easy prioritization in case of network congestion.
+\item Different types of configurations will allow multiple researchers to experiment at the same time.
+\end{itemize}
+
+
+\item {\it Weaknesses:} If security of controller is compromised, then entire network will be at risk. Rather intruder will have more flexibility and power.
+
+\item {\it Questions:} In example of Amy-OSPF, how can we ensure that new protocol does not alter normal entries or whenever normal flow table is refreshed, it will not overwrite Amy's entries?
+
+
+\item {\it Interesting citations:} Ethane: Taking Control of the Enterprise \cite{Ethane}
+
+\item {\it Possible improvements:} 
+GPUs can be used for rapid rule evaluation / packet switching. But depends upon complexity of rule.\cite{GPU}
+\item {\it Future work:} 
+\begin{enumerate}
+\item When implemented at large scale such as internet, Controller can not view each and every undelivered packet. System should be intelligent enough to handle such scenarios
+
+\item If smartphone is wi-fi zone, calling phone can check whether destination MAC (or any other unique) address is also online. If so route call through wi-fi rather than telecom network.
+
+\end{enumerate}
+
+
+\end{itemize}
+
+{
+  %\footnotesize 
+  \small 
+  \bibliographystyle{acm}
+  \begin{thebibliography}{1}
+\bibitem{openflow} OpenFlow: Enabling Innovation in Campus Networks - an editorial note submitted in CCR
+\bibitem{Ethane} Martin Casado, Michael J. Freedman, Justin Pettit,Jianying Luo, Nick McKeown, Scott Shenker. "Ethane: Taking Control of the Enterprise"
+\bibitem{GPU} Weibin Sun"Harnessing GPU Computing in System-Level Software"
+\end{thebibliography}
+\end{document}
+}
+
+
+
+
+

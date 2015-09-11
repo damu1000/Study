@@ -1,0 +1,63 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{epsfig,xspace,url}
+\usepackage{authblk}
+
+
+\title{CS 6480: Class discussion summary\\
+HA 1.b\\}
+\author{Damodar Sahasrabudhe}
+\affil{School of Computing, University of Utah}
+
+\begin{document}
+
+\maketitle
+\section*{Discussion summary}
+
+\begin{itemize}
+
+\item {\it Summary:} 
+\begin{itemize}
+\item A single controller could be used to operate multiple switches. 
+\item Paper aims only enterprise level network, not for the internet.
+\item Performance will be a concern while operating at larger scale.
+\item OpenFlow is implemented at switch \ router level. However, endpoints still use traditional network protocols. This still forces researcher to use standard protocols (e.g. TCP, UDP, IP etc) unless researcher modifies protocol stack at both the ends as well.
+
+\end{itemize} 
+
+\item {\it Strengths:} 
+\begin{itemize}
+\item Paper satisfies all the parties - researchers, administrators and manufacturing companies.
+\item shows innovation to provide programmable switch.
+\item Concept achieves hardware - software split.
+\end{itemize}
+
+\item {\it Weakness:} 
+\begin{itemize}
+\item Does not provide implementation details.
+\item Does not provide evidence, makes assumption that other implementations of similar kind worked well, so will OpenFlow.
+\item Performance could be a problem when implemented at large scale.
+\end{itemize}
+
+
+\item {\it Connection with other work:} 
+A brief mention of Ethan\cite{Ethane}.
+
+\item {\it Future work:} 
+\begin{itemize}
+
+\item GPUs can be used for rapid rule evaluation / packet switching. But depends upon complexity of rule.\cite{GPU}
+\item When implemented at large scale such as internet, Controller can not view each and every undelivered packet. System should be intelligent enough to handle such scenarios
+
+\end{itemize}
+
+\end{itemize}
+
+\begin{thebibliography}{1}
+\bibitem{Ethane} Martin Casado, Michael J. Freedman, Justin Pettit,Jianying Luo, Nick McKeown, Scott Shenker. "Ethane: Taking Control of the Enterprise"
+\bibitem{GPU} Weibin Sun"Harnessing GPU Computing in System-Level Software"
+\end{thebibliography}
+
+\end{document}
+
+
+

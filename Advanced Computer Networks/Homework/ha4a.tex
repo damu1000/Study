@@ -1,0 +1,131 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{epsfig,xspace,url}
+\usepackage{authblk}
+
+
+\title{Paper Summary\\
+HA 2.a\\}
+\author{Damodar Sahasrabudhe}
+\affil{School of Computing, University of Utah}
+
+\begin{document}
+
+\maketitle
+\section{Title of paper: B4: Experience with a Globally-Deployed Software Defined WAN}
+Paper discussed in this summary is "B4: Experience with a Globally-Deployed Software Defined WAN"\cite{paper}.
+
+\subsection{First pass information}
+\label{sec:first}
+
+\begin{enumerate}
+
+\item {\it Category:} Paper discusses implementation of SDN for WAN used by Google.
+
+\item {\it Context:} Paper is in area of SDN implementation. It discusses about Design, Implementation, Evaluation and learning lessons.
+
+\item {\it Assumptions:}  
+Basic assumption in behind implementation is that networking requirements for Google’s data centers data centers will not change in future. These requirements are - massive bandwidth requirements deployed to a modest number of sites, elastic traffic demand that seeks to maximize average bandwidth, and full control over the edge servers and network. 
+
+\item {\it Contributions:} 
+\begin{enumerate}
+\item Paper and implementation's huge success is technology demonstrator for Open Flow and SDN.
+\item B4 links to run at near 100% utilization and all other links to average 70% utilization at 2 to 3 times efficiency improvements.
+\item Even if SDN fails, servers can still communicate by legacy routing mechanisms adds more stability.
+\item Allows available bandwidth to be used 'elastically' for different applications as and when needed
+\item Establishes 'priority' routing for control plane, in case of network failure
+\end{enumerate}
+
+%\item {\it Clarity:} Excellent paper with well explained concepts. Step by step presentation. Graphs and charts from real life data help understand concepts.
+
+\end{enumerate}
+
+\subsection{Second pass information}
+\label{sec:second}
+
+
+
+{\it Summary:} 
+
+\begin{itemize}
+\item Introduction and Background: 
+Paper starts with explaining how traditional WAN architecture uses overprovisioning for reliable service and later explains unique requirements for Google's network connecting data centers - Elastic bandwidth demands, Moderate number of sites with very high bandwidth requirement, ability to prioritize applications and saving cost overheads needed for bandwidth overprovisioning, fault tolerance, scalability.
+
+\item Design:
+B4 has 3 layered architecture - switch hardware layer with simple rules used for forwarding traffic, Site Controller layer containing Open Flow Controllers and the Global layer housing Traffic Engineering Servers and gateways. Each of the layer is explained in subsequent sections.
+\begin{enumerate}
+\item Switch Design: Google built there own hardware switches with peculiar characteristics to suit the requirements. With SDN transmission rates can be adjusted. It reduces packet drops thereby avoiding need for very large buffers in switch. As number of data centers are limited, switches did not need large forwarding tables. Google custom made switches that would provide low level control to software through interfaces. Use of high-radix switches further reduced number of switches needed.
+	Switches are connected by Clos topology. OpenFlow Agent would send any packet, destined outside of ingress chip, to 'spine'.
+\item Network Control: Paxos algorithm is used to find out 'leader' in this distributed system. When a majority of the Paxos servers detect a failure, they elect a new leader among the remaining set of available servers. NIB contains the current state of the network with respect to topology, trunk configurations, and link status (operational, drained, etc.).
+\item Routing: Quagga stack is selected for routing using BGP/ISIS. The custom component "Routing Application Proxy (RAP)" is used to interchange : route updates, flow of routing protocol packets between Quagga and switches and vice a versa. RAP translates from RIB entries forming a network-level view of global connectivity to the low-level hardware tables used by theOpenFlow data plane.
+\item Traffic Engineering (TE): TE ensures fair allocation of bandwidth among competing applications. Bandwidth Enforcer also aggregates bandwidth functions across multiple applications. "Tunnel Group Generation" allocates bandwidth to FGs based on demand and priority. It allocates edge capacity among FGs according to their bandwidth function such that all competing FGs on an edge either receive equal fair share or fully satisfy their demand. A bottleneck edge is not further used for TG generation, and traffic is bypassed without using bottle-necked tunnels.
+\item TE Protocol and Openflow: Each site in the tunnel path maintains per-tunnel forwarding rules. Source site switches encapsulate the packet with an outer IP header whose destination IP address uniquely identifies the tunnel. The outer destination-IP address is a tunnel-ID rather than an actual destination. Each site maintains Tunnel Engineering Database (TED).TED maintains a key-value data store for global Tunnels, Tunnel Groups, and Flow Groups. TED is kept synchronized with all OFCs
+\item Evaluation: As mentioned in the paper, B4 is performing beyond expectations - various graphs point that failures are reduced over the period of time. Even if a link fails, other traffic is taken over by other switches. The busiest B4 edges constantly run at near 100% utilization, while almost all links sustain full utilization during the course of each day - one of the key objectives of B4.
+\item Experience from Outage: Few lessons learned from failures - OFA should be asynchronous and multi-threaded for more parallelism, additional performance profiling and reporting show signs of impending failures, TE server server must be adaptive to failed/unresponsive OFCs when modifying TGs that depend on creating new Tunnels, Multiple, sequenced manual operations should not be involved for virtually any management operation.
+
+\end{enumerate}
+
+\end{itemize}
+
+\subsection{Third pass information}
+\label{sec:third}
+
+\begin{itemize}
+
+\item {\it Strengths:} 
+\begin{itemize}
+\item Excellent paper with technical details, graphs and explanations.
+\item Technology demonstrator to showcase effectiveness of SDN.
+\item Improved WAN performance at reduced cost.
+\item Fault tolerance using secondary servers and automatic take over protocols ensure reliability.
+\item Backward compatibility ensures seamless operation using conventional network protocol in case SDN fails.
+\item Layered architecture provides ease of implementation, operation and maintenance.
+\item Traffic Engineering would provide "central authority" to direct traffic.
+\item Prioritization of traffic will help recovery in case of failures or bottlenecks.
+\end{itemize}
+
+
+\item {\it Weaknesses:} 
+\begin{itemize}
+\item Section 4.1 regarding TE architecture should have been more elaborate.
+\end{itemize}
+
+
+\item {\it Questions:} 
+More elaboration on concepts of Tunnel, TG and FG will help better understanding.
+
+\item {\it Interesting citations:} 
+\begin{enumerate}
+\item Paxos \cite{Paxos}
+\item ECMP Hashing \cite{ECMP}
+\item Onix \cite{Onix}
+\item Fair Allocation \cite{FairAlloc}
+\end{enumerate}
+
+\item {\it Possible improvements:} 
+\begin{itemize}
+\item For testing new configuration Google is using copies of real deployment. They can create some subnet under live network using openFlow and use it for development, research and testing.
+\end{itemize}
+
+\item {\it Future work:} 
+Similar "custom" implementations could be done for many organizations as per custom demands - not necessary for data centers but also for day today work. It can afford organizations reliability at reduced cost.
+\end{itemize}
+
+{
+%\footnotesize 
+\small 
+\bibliographystyle{acm}
+\begin{thebibliography}{1}
+\bibitem{paper} B4: Experience with a Globally-Deployed Software Defined WAN
+\bibitem{Paxos} Paxos Made Live: an Engineering Perspective. In Proc. of the ACM Symposium on Principles of Distributed Computing (New York, NY, USA),ACM, pp.
+\bibitem{ECMP} ECMP Hashing - Thaler, D. Multipath Issues in Unicast and Multicast Next-Hop Selection. RFC 2991, IETF, 2000.
+\bibitem{Onix} Onix: a Distributed Control Platform for Large-scale Production Networks. In Proc. OSDI (2010)
+\bibitem{FairAlloc} Upward Max Min Fairness. In INFOCOM (2012)
+
+\end{thebibliography}
+\end{document}
+}
+
+
+
+
+
